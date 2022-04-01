@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export const ResourceLoader = ({ resourceUrl, resourceName, children }) => {
   const [state, setState] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(resourceUrl);
-      const currentUser = await response.json();
-      setState(currentUser);
+      const response = await axios.get(resourceUrl);
+      // const data = await response.data;
+      // console.log(data)
+      setState(response.data);
     })();
   }, [resourceUrl]);
 
   return (
     <>
       {React.Children.map(children, (child) => {
-        console.log(child);
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { [resourceName]: state });
         } else {
