@@ -7,8 +7,6 @@ export const ResourceLoader = ({ resourceUrl, resourceName, children }) => {
   useEffect(() => {
     (async () => {
       const response = await axios.get(resourceUrl);
-      // const data = await response.data;
-      // console.log(data)
       setState(response.data);
     })();
   }, [resourceUrl]);
