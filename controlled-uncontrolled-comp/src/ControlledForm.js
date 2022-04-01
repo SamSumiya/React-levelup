@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export const ControlledForm = () => {
 
+  const [nameError, setNameError] = useState('');
   const [name, setName] = useState('')
   const [age, setAge] = useState(0);
   const [hairColor, setHairColor] = useState('');
@@ -12,13 +13,16 @@ export const ControlledForm = () => {
 
   useEffect(() => {
     if (name.length < 3) {
-      console.log('name is too short...');
+      setNameError('name is too short...');
+    } else {
+      setNameError('')
     }
   }, [name, age, hairColor])
 
   return (
     <>
       <form onSubmit={handleSubmit}>
+        { nameError && <p>{nameError}</p>}
         <input
           type="text"
           name="name"
