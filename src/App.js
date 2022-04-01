@@ -1,11 +1,19 @@
-
 import './App.css';
+import { CurrentUserLoader } from './CurrentUserLoader'
+import { UserLoader } from './UserLoader'
+import { ResourceLoader } from './ResourceLoader';
+import { UserInfo } from './UserInfo'
 
 function App() {
   return (
-    <div className="App">
-      APP 
-    </div>
+    <>
+      <ResourceLoader
+        resourceUrl='/users/345'
+        resourceName='user'
+      >
+        <UserInfo />
+      </ResourceLoader>
+    </>
   );
 }
 
