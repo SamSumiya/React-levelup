@@ -3,16 +3,24 @@ import { useState } from 'react';
 // import { UncontrolledForm } from './UncontrolledForm'
 // import { ControlledForm } from './ControlledForm'
 // import { ControlledModal } from './ControlledModal';
-import { UncontrolledOnboardingFlow } from './UncontrolledOnboardingFlow';
+// import { UncontrolledOnboardingFlow } from './UncontrolledOnboardingFlow';
+import { ControlledOnboardingFlow } from './ControlledOnboardingFlow'
 
 function App() {
-  const [shouldShowModal, setShouldShowModal] = useState(false);
+  // const [shouldShowModal, setShouldShowModal] = useState(false);
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [onbordingData, setOnboardingData] = useState({});
+
+  const onNext = stepData => {
+    setOnboardingData({ ...onbordingData, ...stepData });
+    setCurrentIndex(currentIndex + 1)
+  }
 
   const StepOne = ({ goToNext }) => (
     <>
       <h2>Step 1</h2>
-      <button onClick={() => goToNext({name: 'Alex'})}>Next</button>
+      <button onClick={() => goToNext({ name: 'Alex' })}>Next</button>
     </>
   );
   const StepTwo = ({ goToNext }) => (
@@ -24,7 +32,7 @@ function App() {
   const StepThree = ({ goToNext }) => (
     <>
       <h2>Step 3</h2>
-      <button onClick={() => goToNext({hairColor: 'Red'})}>Next</button>
+      <button onClick={() => goToNext({ hairColor: 'Red' })}>Next</button>
     </>
   );
 
@@ -41,11 +49,15 @@ function App() {
       </button> */}
       {/* </ControlledModal> */}
 
-      <UncontrolledOnboardingFlow onFinish={data => console.log(data)}>
+      <ControlledOnboardingFlow
+        onFinish={(data) => console.log(data)}
+        currentIndex = { currentIndex }
+        onNext = { onNext }
+      >
         <StepOne />
         <StepTwo />
         <StepThree />
-      </UncontrolledOnboardingFlow>
+      </ControlledOnboardingFlow>
     </>
   );
 }

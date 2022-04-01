@@ -14,7 +14,6 @@ export const UncontrolledOnboardingFlow = ({ children, onFinish }) => {
       ...stepData, 
     }
 
-    console.log(updatedData);
     if (nextIndex < children.length) {
       setCurrentIdx(nextIndex);
     } else {
