@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 export const CurrentUserLoader = ({ children }) => {
-
   const [user, setUser] = useState(null)
 
   useEffect(() => {
