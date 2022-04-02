@@ -1,11 +1,24 @@
 import { useCurrentUser } from "./useCurrentUser";
+import { useUser } from "./useUser";
+import { useResource } from './useResource';
+import { useDataResource } from './useDataResource';
 
-export const UserInfo = () => {
+const serverResource = resourceUrl => async () => {
+  const response = await fetch(resourceUrl);
+  return response.json();
+}
 
-  const {user} = useCurrentUser() 
+export const UserInfo = ({ userId }) => {
 
-  const { name, age, hairColor, hobbies } = user || {};
-  return user ? (
+  // const { user } = useCurrentUser() 
+  // const { user } = useUser(userId);
+  
+  // const { resource } = useResource(`/users/${userId}`);
+  const { resource } = useDataResource(serverResource(`/users/${userId}`));
+
+
+  const { name, age, hairColor, hobbies } = resource || {};
+  return resource ? (
     <>
       <h3>{name}</h3>
       <p>Age: {age} years</p>
