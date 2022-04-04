@@ -1,6 +1,6 @@
 import { LargePersonList } from "./people/LargePersonList";
 import { SmallPersonList } from "./people/SmallPersonList";
-import { RegularList } from "./people/RegularList";
+import { RegularList } from "./RegularList";
 
 const people = [
   {

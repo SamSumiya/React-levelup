@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const SmallPersonList = ({ person }) => {
-
+  console.log(person);
   const { name, age } = person
 
   return (
